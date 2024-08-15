@@ -1,4 +1,5 @@
 ﻿using Crud_test_project.Models;
+using System.Text.Json;
 
 namespace Crud_test_project.Services
 {
@@ -37,8 +38,18 @@ namespace Crud_test_project.Services
 
         public async Task UpdateToDoAsync(int id, ToDoModel updatedToDo)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{baseUrl}/{id}", updatedToDo);
-            response.EnsureSuccessStatusCode();
+            var original = await GetToDoByIdAsync(id);
+            if (original != null)
+            {
+                Dictionary<string, object> dict = new Dictionary<string, object>();
+                if (original.Completed != updatedToDo.Completed) dict.Add("completed", updatedToDo.Completed); 
+                if (original.ToDo != updatedToDo.ToDo) dict.Add("todo", updatedToDo.ToDo); 
+                if (original.UserId != updatedToDo.UserId) dict.Add("userId", updatedToDo.UserId);
+
+                var content = new StringContent(JsonSerializer.Serialize(dict), System.Text.Encoding.UTF8, "application/json");
+                var response = await _httpClient.PutAsJsonAsync($"{baseUrl}/{id}", content);
+                response.EnsureSuccessStatusCode();
+            }
         }
 
         public async Task DeleteToDoAsync(int id)

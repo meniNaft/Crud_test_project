@@ -81,7 +81,7 @@ namespace Crud_test_project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ToDo,Completed,UserId")] ToDoModel toDoModel)
         {
-            if (id != toDoModel.id)
+            if (id != toDoModel.Id)
             {
                 return NotFound();
             }
@@ -90,11 +90,11 @@ namespace Crud_test_project.Controllers
             {
                 try
                 {
-                    await _context.UpdateToDoAsync(toDoModel.id, toDoModel);
+                    await _context.UpdateToDoAsync(toDoModel.Id, toDoModel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await ToDoModelExists(toDoModel.id))
+                    if (!await ToDoModelExists(toDoModel.Id))
                     {
                         return NotFound();
                     }

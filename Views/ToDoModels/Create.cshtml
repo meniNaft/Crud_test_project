@@ -13,19 +13,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="todo" class="control-label"></label>
-                <input asp-for="todo" class="form-control" />
-                <span asp-validation-for="todo" class="text-danger"></span>
+                <label asp-for="ToDo" class="control-label"></label>
+                <input asp-for="ToDo" class="form-control" />
+                <span asp-validation-for="ToDo" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="completed" /> @Html.DisplayNameFor(model => model.completed)
+                    <input class="form-check-input" asp-for="Completed" /> @Html.DisplayNameFor(model => model.Completed)
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="userId" class="control-label"></label>
-                <input asp-for="userId" class="form-control" />
-                <span asp-validation-for="userId" class="text-danger"></span>
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

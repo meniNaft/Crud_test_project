@@ -15,8 +15,8 @@ namespace Crud_test_project.Services
         {
             var response = await _httpClient.GetAsync(baseUrl);
             response.EnsureSuccessStatusCode();
-            var toDoList = await response.Content.ReadFromJsonAsync<List<ToDoModel>>();
-            return toDoList;
+            var toDoList = await response.Content.ReadFromJsonAsync<ToDoList>();
+            return toDoList.ToDos;
         }
 
         public async Task<ToDoModel> GetToDoByIdAsync(int id)

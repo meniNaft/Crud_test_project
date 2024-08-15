@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Crud_test_project.Data;
-using Crud_test_project.Services;
-using Newtonsoft.Json;
-using System;
-using Crud_test_project.Models;
+﻿using Crud_test_project.Services;
 namespace Crud_test_project
 {
     public class Program
@@ -12,8 +6,6 @@ namespace Crud_test_project
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<Crud_test_projectContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("Crud_test_projectContext") ?? throw new InvalidOperationException("Connection string 'Crud_test_projectContext' not found.")));
             HttpClient client = new HttpClient();
             builder.Services.AddSingleton(new ApiToDoService(client));
             // Add services to the container.

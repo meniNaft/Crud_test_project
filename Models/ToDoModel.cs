@@ -9,4 +9,9 @@ namespace Crud_test_project.Models
         public bool completed { get; set; }
         public int userId { get; set; }
     }
+
+    public class ToDoList
+    {
+        public List<ToDoModel> ToDos { get; set; }
+    }
 }
